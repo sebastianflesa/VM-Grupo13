@@ -1,0 +1,26 @@
+trigger:
+- main
+
+stages:
+- stage: DeployToVM
+  jobs:
+  - deployment: InstallApacheAndConfigure
+    displayName: "Instalar Apache y Configurar Página"
+    
+    environment:
+      name: "VM-Grupo13" # Nombre de tu entorno
+      resourceType: VirtualMachine # Tipo de recurso, en este caso una máquina virtual
+
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+          - script: |
+              echo "Iniciando instalación de Apache..."
+              sudo apt-get update
+              sudo apt-get install -y apache2
+              echo "Hola Estudiantes, Hemos configurado la administración y toma de control de la máquina virtual desde Azure DevOps con código automatizado para cumplir con el CI/CD" | sudo tee /var/www/html/index.html
+              sudo systemctl restart apache2
+              echo "Instalación y configuración completadas."
+            displayName: "Instalar Apache y Configurar Mensaje"
+
