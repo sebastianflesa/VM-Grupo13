@@ -8,7 +8,7 @@ stages:
     displayName: "Instalar Apache y Configurar Página"
     
     environment:
-      name: VM-Grupo13 # Nombre de tu entorno
+      name: VMGrupo13 # Nombre de tu entorno
       resourceType: VirtualMachine # Tipo de recurso, en este caso una máquina virtual
 
     strategy:
